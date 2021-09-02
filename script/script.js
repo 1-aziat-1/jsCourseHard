@@ -16,17 +16,17 @@ for (let i = 0; i < arr.length; i++) {
 SumNum **=3;
 console.log(SumNum.toString().substring(0,2));
 
-// console.log(typeof(money));
-// console.log(typeof(income));
-// console.log(typeof(deposit));
+console.log(typeof(money));
+console.log(typeof(income));
+console.log(typeof(deposit));
 
-// console.log(addExpenses.length);
+console.log(addExpenses.length);
 
-// console.log("Период равен " + period+" месяцев");
-// console.log("Цель заработать " + mission+" рублей");
+console.log("Период равен " + period+" месяцев");
+console.log("Цель заработать " + mission+" рублей");
 
-// addExpenses = addExpenses.toLowerCase();
-// console.log(addExpenses.split(`, `));
+addExpenses = addExpenses.toLowerCase();
+console.log(addExpenses.split(`, `));
 
-// let budgetDay = money/30;
-// console.log('budgetDay: ', budgetDay);
+let budgetDay = money/30;
+console.log('budgetDay: ', budgetDay);
