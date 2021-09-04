@@ -22,7 +22,8 @@ switch(elemAtribut){
 let arr = {
     "ru" : ["понедельник", "вторник", "среда", "четврг", "пятница", "суббота", "воскресенье"],
     "en" : ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
-}
+    ee : ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+};
 
 
 
