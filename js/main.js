@@ -44,7 +44,7 @@
 
 class AppData{
 
-  constructor(targetMonth = 0, arrProject = {}, income = {}, addIncome =  [], expenses =  {},addExpenses =  [], incomeMonth =  0, deposit =  false, moneyDeposit=  0, percentDeposit =  0, budget =  0, budgetDay =  0, budgetMonth=  0, expensesMonth =  0){
+  constructor(targetMonth = 0, income = {}, addIncome =  [], expenses =  {},addExpenses =  [], incomeMonth =  0, deposit =  false, moneyDeposit=  0, percentDeposit =  0, budget =  0, budgetDay =  0, budgetMonth=  0, expensesMonth =  0){
     this.income =  income;
     this.addIncome =  addIncome;
     this.expenses =  expenses;
@@ -58,8 +58,6 @@ class AppData{
     this.budgetMonth =  budgetMonth;
     this.expensesMonth =  expensesMonth;
     this.targetMonth = targetMonth;
-    this.arrProject = arrProject;
-   
   }
   
 
@@ -96,17 +94,24 @@ class AppData{
     cancel.style.display = 'block';
 
     localStorage.setItem('arrProject', JSON.stringify(appData));
+  
+
+    for(let key in appData){
+      document.cookie = key +'='+ appData[key] +'; Path=/;';
+    }
     
   }
-
-  
   
   showProject(){
     if(localStorage.getItem('arrProject') !== null){
-
-      
       const raw = localStorage.getItem('arrProject');
-      this.arrProject = JSON.parse(raw); 
+      const arrProject = JSON.parse(raw); 
+
+      for(let key in arrProject){
+        if(!document.cookie.includes(`${key}`)){
+          this.cancel();
+        }
+      }
 
       document.querySelectorAll('input').forEach(item => {item.disabled =   'disabled';});
 
@@ -114,13 +119,12 @@ class AppData{
       cancel.style.display = 'block';
 
       for(let key1 in appData){
-        for(let key2 in this.arrProject){
+        for(let key2 in arrProject){
           if(key1 === key2){
-           appData[key1] = this.arrProject[key2];
+           appData[key1] = arrProject[key2];
            break;
           }
         }
-        document.cookie = `${key1}=${this.arrProject[key1]}`;
       }
       this.showResult();
       
@@ -137,7 +141,9 @@ class AppData{
       item.disabled = ''; 
     });
 
- 
+    for(let key in appData){
+      document.cookie = key +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
 
     this.income = {};
     this.addIncome = [];
